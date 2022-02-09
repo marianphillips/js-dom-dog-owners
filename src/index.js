@@ -17,51 +17,50 @@ for (const dog of data) {
    }
 
 
-//make main dog cards
-const dogCard = document.querySelector('.main__dog-section')
+//make main dog cards with good dog bad dog button
+const mainCard = document.querySelector('.main__dog-section')
 
 function createCard(dog) {
-    dogCard.innerHTML = `<h2>${dog.name}</h2>
+    mainCard.innerHTML = `<h2>${dog.name}</h2>
            <img src="${dog.image}" alt="dog"/>
             <div class="main__dog-section__desc">
               <h3>Bio</h3>
               <p>${dog.bio}</p>
-            </div class="main__dog-section__btn">
-            ${goodBadDogButton(dog)}`
+            </div>`
+
+    const buttonArea = document.createElement('div')
+    buttonArea.setAttribute('class', 'main__dog-section__btn')
+    mainCard.append(buttonArea)
+
+    const naughty = document.createElement('p')
+    if(dog.isGoodDog) {naughty.innerHTML = '<em>Is naughty?</em> No!'}
+    else if(!dog.isGoodDog) {naughty.innerHTML = '<em>Is naughty?</em> Yes!'}
+    buttonArea.append(naughty)
+
+    const button = document.createElement('button')
+    if(dog.isGoodDog) {button.innerText = 'Good Dog!'}
+    else if(!dog.isGoodDog) {button.innerText = 'Bad Dog!'}
+    buttonArea.append(button)
+
+    button.addEventListener('click', function() {
+        if(dog.isGoodDog) {
+            dog.isGoodDog = false
+            button.innerText = 'Bad Dog!'
+            naughty.innerHTML = '<em>Is naughty?</em> Yes!'        
+            }
+        else if(!dog.isGoodDog) {
+            dog.isGoodDog = true
+            button.innerText = 'Good Dog!'
+            naughty.innerHTML = '<em>Is naughty?</em> No!'
+            }
+    })
 
 }
-
-//goodbad dog button, starting value
-function goodBadDogButton(dog) {
-    if(dog.isGoodDog) {
-    return `<p><em>Is naughty?</em> No!</p>
-            <button>Bad dog!</button>`
-    }
-    else if(!dog.isGoodDog) {
-        return `<p><em>Is naughty?</em> Yes!</p>
-                <button>Good dog!</button>`
-        }
-}
-
-//goodbad event listener
-
-// const goodBad = document.querySelector('button')
-
-// goodBad.addEventListener('click', function() {
-//     if(dog.isGoodDog) {
-//         dog.isGoodDog = false
-//     }
-//     else if(dog.isGoodDog) {
-//         dog.isGoodDog = true
-//     }
-// })
-
-
 
 
 //new dog form
 function createNewDog() {
-    dogCard.innerHTML = 
+    mainCard.innerHTML = 
           `<h2>Add a new Dog</h2>
           <form class="form">
     
@@ -108,20 +107,6 @@ addDogButton.addEventListener('click', function() {
     submitNewDog.addEventListener('submit', function(event) {
         event.preventDefault()   
         data.push(dogObject) 
-        makingANavButton(data[data.length-1])
-        console.log(data.length)
-       
+        makingANavButton(data[data.length-1])      
        })
 })
-
-       
-   
-
-
-
-
-
-
-    //to do
-    //sort images so they are the same size
-    //sort good dog button
