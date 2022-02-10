@@ -90,17 +90,17 @@ addDogButton.addEventListener('click', function() {
 
     let dogObject = {id: data.length + 1, isGoodBoy: true}
 
-    name.addEventListener('input', function(event) {
-        dogObject.name = event.target.value
+    name.addEventListener('input', function() {
+        dogObject.name = name.value
        })
 
-    image.addEventListener('input', function(event) {
-        dogObject.image = event.target.value
+    image.addEventListener('input', function() {
+        dogObject.image = image.value
      
        })
     
-    bio.addEventListener('input', function(event) {
-        dogObject.bio = event.target.value
+    bio.addEventListener('input', function() {
+        dogObject.bio = bio.value
        })
  
     
