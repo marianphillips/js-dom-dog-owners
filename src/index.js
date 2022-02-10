@@ -84,29 +84,26 @@ addDogButton.addEventListener('click', function() {
     createNewDog()
 
     const submitNewDog = document.querySelector('.form')
-    const name = document.querySelector('#name')
-    const image = document.querySelector('#image')
-    const bio = document.querySelector('#bio')
-
-    let dogObject = {id: data.length + 1, isGoodBoy: true}
-
-    name.addEventListener('input', function() {
-        dogObject.name = name.value
-       })
-
-    image.addEventListener('input', function() {
-        dogObject.image = image.value
-     
-       })
-    
-    bio.addEventListener('input', function() {
-        dogObject.bio = bio.value
-       })
- 
+   
     
     submitNewDog.addEventListener('submit', function(event) {
-        event.preventDefault()   
+        event.preventDefault()  
+        const name = document.querySelector('#name')
+        const image = document.querySelector('#image')
+        const bio = document.querySelector('#bio')
+    
+        let dogObject = {id: data.length + 1, isGoodBoy: true}
+            dogObject.name = name.value
+            dogObject.image = image.value
+            dogObject.bio = bio.value
+
+         
         data.push(dogObject) 
-        makingANavButton(data[data.length-1])      
+        makingANavButton(data[data.length-1])
+
+        name.value = ""
+        image.value = ""
+        bio.value = ""
+              
        })
 })
